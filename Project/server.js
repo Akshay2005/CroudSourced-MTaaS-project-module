@@ -58,6 +58,40 @@ app.post('/usersignup', function (req, res) {
   });
 });
 
+//check valid username and password
+app.post('/userlist', function (req, res) {
+
+  console.log('I received a GET request');
+  console.log(req.body.password);
+
+  db.userlist.findOne({
+    "name": req.body.name
+  }, function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result.password == req.body.password) {
+      sess = req.session;
+      sess.username = req.body.name;
+      console.log("successful");
+      res.send("successful");
+    } else {
+      console.log("unsuccessful");
+      res.send("unsuccessful");
+    }
+  });
+});
+
+//session check
+app.get('/sessioncheck', function (req, res) {
+  console.log('I received a session check request');
+  sess = req.session;
+  if (sess.username) {
+    res.send(sess.username);
+  } else {
+    res.send("not exist");
+  }
+});
 
 app.listen(process.env.PORT || 3000, function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
