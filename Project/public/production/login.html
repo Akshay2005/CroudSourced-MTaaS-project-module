@@ -33,7 +33,7 @@
           <form name="loginform">
             <h1>Login Form</h1>
             <div>
-              <input type="text" class="form-control" placeholder="Username" ng-model="userlogin.name" ng-required="true" />
+              <input type="text" class="form-control" placeholder="Username" ng-model="userlogin.username" ng-required="true" />
             </div>
             <div>
               <input type="password" class="form-control" placeholder="Password" ng-model="userlogin.password" ng-required="true" />
@@ -67,8 +67,19 @@
           <form name="signupform">
             <h1>Create Account</h1>
             <div>
-              <input type="text" class="form-control" placeholder="Username" ng-model="user.name" ng-required="true" />
+              <input type="text" class="form-control" placeholder="Name" ng-model="user.name" ng-required="true" />
             </div>
+            <div>
+              <input type="text" class="form-control" placeholder="Username" ng-model="user.username" ng-required="true" />
+            </div>
+            <div>
+              <select ng-model="user.role" class="form-control">
+                <option value="customer">Customer</option>
+                <option value="manager">Manager</option>
+                <option value="tester">Tester</option>
+              </select>
+            </div>
+            <div><br></div>
             <div>
               <input type="email" class="form-control" placeholder="Email" ng-model="user.email" ng-required="true" />
             </div>

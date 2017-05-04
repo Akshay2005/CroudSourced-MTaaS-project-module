@@ -24,7 +24,7 @@ loginapp.controller('LoginController', ['$scope', '$http', '$window', function (
 	$scope.authUser = function () {
 		console.log($scope.userlogin);
 
-		$http.post('/userlist', $scope.userlogin).then(function (response) {
+		$http.post('/authuser', $scope.userlogin).then(function (response) {
 			console.log("Login " + response.data);
 			if (response.data == "successful") {
 				$window.location.href = "index.html";

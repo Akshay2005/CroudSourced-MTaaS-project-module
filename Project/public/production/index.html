@@ -55,12 +55,12 @@
                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a ui-sref="dashboard">Dashboard</a></li>
-                    <li><a ui-sref="projects">Projects</a></li>
                   </ul>
                 </li>
-                <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-edit"></i> Projects <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="form.html">General Form</a></li>
+                    <li><a ui-sref="addproject">Add Project</a></li>
+                    <li><a ui-sref="viewprojects">View Project</a></li>
                     <li><a href="form_advanced.html">Advanced Components</a></li>
                     <li><a href="form_validation.html">Form Validation</a></li>
                     <li><a href="form_wizards.html">Form Wizard</a></li>
@@ -134,6 +134,7 @@
 
   <!-- jQuery -->
   <script src="../vendors/jquery/dist/jquery.min.js"></script>
+  <script src="js/datatables/jquery.dataTables.min.js"></script>
   <!-- Bootstrap -->
   <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- FastClick -->
@@ -144,6 +145,10 @@
   <!-- Custom Theme Scripts -->
   <script src="../build/js/custom.min.js"></script>
   <script src="controllers/controller.js"></script>
+  <script src="js/datatables/angular-datatables.min.js"></script>
+  <script src="js/datatables/angular-datatables.bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/datatables/angular-datatables.css">
+  <link rel="stylesheet" href="css/datatables/datatables.bootstrap.min.css">
 </body>
 
 </html>

@@ -59,20 +59,20 @@ app.post('/usersignup', function (req, res) {
 });
 
 //check valid username and password
-app.post('/userlist', function (req, res) {
+app.post('/authuser', function (req, res) {
 
   console.log('I received a GET request');
   console.log(req.body.password);
 
   db.userlist.findOne({
-    "name": req.body.name
+    "username": req.body.username
   }, function (err, result) {
     if (err) {
       console.log(err);
     }
-    if (result.password == req.body.password) {
+    if (result != null && result.password == req.body.password) {
       sess = req.session;
-      sess.username = req.body.name;
+      sess.username = req.body.username;
       console.log("successful");
       res.send("successful");
     } else {
@@ -82,15 +82,22 @@ app.post('/userlist', function (req, res) {
   });
 });
 
-//session check
-app.get('/sessioncheck', function (req, res) {
-  console.log('I received a session check request');
-  sess = req.session;
-  if (sess.username) {
-    res.send(sess.username);
-  } else {
-    res.send("not exist");
-  }
+//add project
+app.post('/addproject', function (req, res) {
+  var projectListCollection = db.collection('projectlist');
+  console.log(req.body);
+  projectListCollection.insert(req.body, function (err, doc) {
+    res.json(doc);
+  });
+});
+
+//get all project from projectlist
+app.get('/viewprojectlist', function (req, res) {
+  var projectListCollection = db.collection('projectlist');
+  projectListCollection.find({}, (function (err, docs) {
+    console.log(docs);
+    res.send(docs);
+  }));
 });
 
 app.listen(process.env.PORT || 3000, function () {
