@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d51f797-a8a4-4f24-a616-47cba1966fbb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/public/production/controllers/controller.js" afterPath="$PROJECT_DIR$/Project/public/production/controllers/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/public/production/pages/users.html" afterPath="$PROJECT_DIR$/Project/public/production/pages/users.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project/server.js" afterPath="$PROJECT_DIR$/Project/server.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Project/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="194" column="41" lean-forward="true" selection-start-line="194" selection-start-column="41" selection-end-line="194" selection-end-column="52" />
+            <state relative-caret-position="374">
+              <caret line="205" column="49" lean-forward="true" selection-start-line="205" selection-start-column="49" selection-end-line="205" selection-end-column="49" />
               <folding>
                 <element signature="e#335#438#0" expanded="false" />
                 <element signature="e#693#727#0" expanded="false" />
@@ -51,17 +48,17 @@
                 <element signature="e#3677#4088#0" expanded="false" />
                 <element signature="e#4111#4135#0" expanded="false" />
                 <element signature="e#4885#4933#0" expanded="false" />
-                <element signature="e#6205#6312#0" expanded="false" />
+                <element signature="e#6250#6357#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Project/public/production/controllers/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="207" column="28" lean-forward="false" selection-start-line="207" selection-start-column="28" selection-end-line="207" selection-end-column="28" />
+            <state relative-caret-position="340">
+              <caret line="166" column="0" lean-forward="true" selection-start-line="166" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
               <folding>
                 <element signature="e#144#1026#0" expanded="false" />
                 <element signature="e#230#334#0" expanded="false" />
@@ -149,8 +146,8 @@
       <find>updateprofile</find>
       <find>viewprojectlist</find>
       <find>update</find>
-      <find>$scope.project</find>
       <find>addProject</find>
+      <find>$scope.project</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -266,7 +263,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/Program Files/nodejs/node.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Project/server.js" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -370,7 +367,7 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <configuration default="false" name="Server" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="C:/Program Files/nodejs/node" working-dir="$PROJECT_DIR$">
+    <configuration default="false" name="Server" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="C:/Program Files/nodejs/node" path-to-js-file="Project/server.js" working-dir="$PROJECT_DIR$">
       <EXTENSION ID="com.jetbrains.nodejs.remote.docker.NodeJSDockerRunConfigurationExtension">
         <option name="envVars">
           <list />
@@ -417,12 +414,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494663814300</updated>
-      <workItem from="1494663817298" duration="11168000" />
+      <workItem from="1494663817298" duration="13775000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11168000" />
+    <option name="totallyTimeSpent" value="13775000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -437,7 +434,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24304539" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24304539" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -481,7 +478,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/Project/server.js</url>
+          <line>205</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -536,42 +541,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="194" column="41" lean-forward="true" selection-start-line="194" selection-start-column="41" selection-end-line="194" selection-end-column="52" />
-          <folding>
-            <element signature="e#335#438#0" expanded="false" />
-            <element signature="e#693#727#0" expanded="false" />
-            <element signature="e#733#765#0" expanded="false" />
-            <element signature="e#837#1142#0" expanded="false" />
-            <element signature="e#947#1138#0" expanded="false" />
-            <element signature="e#962#1044#0" expanded="false" />
-            <element signature="e#1050#1134#0" expanded="false" />
-            <element signature="e#1206#1312#0" expanded="false" />
-            <element signature="e#1284#1308#0" expanded="false" />
-            <element signature="e#1394#1930#0" expanded="false" />
-            <element signature="e#1497#1536#0" expanded="false" />
-            <element signature="e#1561#1926#0" expanded="false" />
-            <element signature="e#1576#1607#0" expanded="false" />
-            <element signature="e#1672#1842#0" expanded="false" />
-            <element signature="e#1848#1922#0" expanded="false" />
-            <element signature="e#2476#2717#0" expanded="false" />
-            <element signature="e#2689#2713#0" expanded="false" />
-            <element signature="e#3535#4139#0" expanded="false" />
-            <element signature="e#3671#4089#0" expanded="false" />
-            <element signature="e#3677#4088#0" expanded="false" />
-            <element signature="e#4111#4135#0" expanded="false" />
-            <element signature="e#4885#4933#0" expanded="false" />
-            <element signature="e#6205#6312#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Project/public/production/controllers/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="207" column="28" lean-forward="false" selection-start-line="207" selection-start-column="28" selection-end-line="207" selection-end-column="28" />
+        <state relative-caret-position="340">
+          <caret line="166" column="0" lean-forward="true" selection-start-line="166" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
           <folding>
             <element signature="e#144#1026#0" expanded="false" />
             <element signature="e#230#334#0" expanded="false" />
@@ -633,6 +606,38 @@
             <element signature="e#6986#7076#0" expanded="false" />
             <element signature="e#7111#7215#0" expanded="false" />
             <element signature="e#7239#7456#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="205" column="49" lean-forward="true" selection-start-line="205" selection-start-column="49" selection-end-line="205" selection-end-column="49" />
+          <folding>
+            <element signature="e#335#438#0" expanded="false" />
+            <element signature="e#693#727#0" expanded="false" />
+            <element signature="e#733#765#0" expanded="false" />
+            <element signature="e#837#1142#0" expanded="false" />
+            <element signature="e#947#1138#0" expanded="false" />
+            <element signature="e#962#1044#0" expanded="false" />
+            <element signature="e#1050#1134#0" expanded="false" />
+            <element signature="e#1206#1312#0" expanded="false" />
+            <element signature="e#1284#1308#0" expanded="false" />
+            <element signature="e#1394#1930#0" expanded="false" />
+            <element signature="e#1497#1536#0" expanded="false" />
+            <element signature="e#1561#1926#0" expanded="false" />
+            <element signature="e#1576#1607#0" expanded="false" />
+            <element signature="e#1672#1842#0" expanded="false" />
+            <element signature="e#1848#1922#0" expanded="false" />
+            <element signature="e#2476#2717#0" expanded="false" />
+            <element signature="e#2689#2713#0" expanded="false" />
+            <element signature="e#3535#4139#0" expanded="false" />
+            <element signature="e#3671#4089#0" expanded="false" />
+            <element signature="e#3677#4088#0" expanded="false" />
+            <element signature="e#4111#4135#0" expanded="false" />
+            <element signature="e#4885#4933#0" expanded="false" />
+            <element signature="e#6250#6357#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -192,29 +192,36 @@ app.post('/assignProject', function (req,res) {
     console.log(project)
     console.log(user)
 
-    projectListCollection.update({"_id": project._id},{$push: {assignedUserList: user }}), function (err, results) {
+   projectListCollection.update({"_id":  new ObjectID(project._id)},{$push: {assignedUserList: user }}), function (err, results) {
+       if(err){
+         console.log("Error: "+err)
+       }
         if (results) {
             console.log("Successfully added user to the project.");
             json_responses = {"statusCode": 200};
 
-            userList.update({"_id": user._Id},{$push: {assignedProjectList: project }}), function (err, results) {
-                if (results) {
-                    console.log("Successfully added project to the user.");
-                    json_responses = {"statusCode": 200};
-                    res.send(json_responses);
-                }
-                else {
-                    json_responses = {"statusCode": 401};
-                    res.send(json_responses);
-                }
-            }
+
         }
         else {
             json_responses = {"statusCode": 401};
-            res.send(json_responses);
+            //res.send(json_responses);
         }
 
     }
+
+    userList.update({"_id": new ObjectID(user._id)},{$push: {assignedProjectList: project }}), function (err, results) {
+        if (results) {
+            console.log("Successfully added project to the user.");
+            json_responses = {"statusCode": 200};
+            //res.send(json_responses);
+        }
+        else {
+            json_responses = {"statusCode": 401};
+            //res.send(json_responses);
+        }
+    }
+
+    res.send({"statusCode": 200});
 
 });
 
