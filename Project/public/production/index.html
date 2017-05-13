@@ -39,8 +39,8 @@
               <img src="images/img.jpg" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-              <span>Welcome,</span>
-              <h2>{{ username }}</h2>
+              <span>Welcome</span>
+              <span>{{ username | capitalize}}</span>
             </div>
           </div>
           <!-- /menu profile quick info -->
@@ -96,7 +96,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="images/img.jpg" alt="">{{ username }}
+                  <img src="images/img.jpg" alt="">{{ username | capitalize}}
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -140,6 +140,7 @@
   <script src="../build/js/custom.min.js"></script>
   <script src="controllers/controller.js"></script>
   <script src="js/datatables/angular-datatables.min.js"></script>
+  <script src="js/datatables/dirPagination.js"></script>
   <script src="js/datatables/angular-datatables.bootstrap.min.js"></script>
   <script src="js/datepicker/daterangepicker.js"></script>
   <link rel="stylesheet" href="css/datatables/angular-datatables.css">

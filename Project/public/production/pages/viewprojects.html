@@ -14,7 +14,13 @@
         </div>
 
         <div class="clearfix"></div>
-
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                </div>
+             </div>
+        </div>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -22,8 +28,8 @@
                         <h2>View Projects</h2>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
-                        <table class="table" datatable="ng">
+                    <div class="x_content" >
+                        <table class="table"  >
                             <thead>
                                 <tr>
                                     <th>Project Name</th>
@@ -33,7 +39,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="project in projectlist">
+                                <tr dir-paginate="project in projectlist|filter:search |itemsPerPage:5 track by $index">
+
                                     <td>{{project.name}}</td>
                                     <td>{{project.startdate}}</td>
                                     <td>{{project.enddate}}</td>
@@ -44,6 +51,17 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="row" >
+                        
+                        <div class="col-sm-9">
+                            <dir-pagination-controls
+                                    max-size="100"
+                                    direction-links="true"
+                                    boundary-links="true" >
+                            </dir-pagination-controls>
+                        </div>
+                        <div class="col-sm-1"></div>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'datatables', 'datatables.bootstrap']);
+var app = angular.module('app', ['ui.router', 'datatables', 'datatables.bootstrap', 'angularUtils.directives.dirPagination']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise("/dashboard");
@@ -33,6 +33,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		templateUrl: 'pages/users.html',
 		controller: 'ViewUsers'
 	})
+});
+
+app.filter('capitalize', function() {
+    return function(input) {
+        return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
 });
 
 app.factory('Scopes', function ($rootScope) {
