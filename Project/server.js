@@ -180,6 +180,44 @@ app.get('/viewprofile', function (req, res) {
   }));
 });
 
+app.post('/assignProject', function (req,res) {
+    console.log("Assign Project:::")
+    var userList = db.collection('userlist');
+    var projectListCollection = db.collection('projectlist');
+
+
+    var project = req.body.project
+    var user =  req.body.profileData
+
+    console.log(project)
+    console.log(user)
+
+    projectListCollection.update({"_id": project._id},{$push: {assignedUserList: user }}), function (err, results) {
+        if (results) {
+            console.log("Successfully added user to the project.");
+            json_responses = {"statusCode": 200};
+
+            userList.update({"_id": user._Id},{$push: {assignedProjectList: project }}), function (err, results) {
+                if (results) {
+                    console.log("Successfully added project to the user.");
+                    json_responses = {"statusCode": 200};
+                    res.send(json_responses);
+                }
+                else {
+                    json_responses = {"statusCode": 401};
+                    res.send(json_responses);
+                }
+            }
+        }
+        else {
+            json_responses = {"statusCode": 401};
+            res.send(json_responses);
+        }
+
+    }
+
+});
+
 app.listen(process.env.PORT || 3000, function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
