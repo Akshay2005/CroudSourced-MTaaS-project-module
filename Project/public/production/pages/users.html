@@ -34,7 +34,7 @@
                             <tr ng-repeat="user in users">
                                 <td>{{user.name}}</td>
                                 <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewModal" ng-click="viewProfile(user._id)">View Profile</button></td>
-                                <td><button id="{{user._id}}" type="button" class="btn btn-warning">Add To Project + </button></td>
+                                <td><button id="{{user._id}}" type="button" class="btn btn-warning" data-toggle="modal" data-target="#viewModalForProject" ng-click="viewAllProjectsList(user._id)">Add To Project + </button></td>
                             </tr>
                             </tbody>
                         </table>
@@ -62,6 +62,40 @@
                         <p><strong>Current Projects: </strong>{{profileData.projects}}</p>
                         <p><strong>Available: </strong>{{profileData.available}}</p>
                         <p><strong>Hours Available: </strong>{{profileData.hours}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="viewModalForProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabelForProject">Complete list of Projects</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table" datatable="ng">
+                            <thead>
+                            <tr>
+                                <th>Project Name </th>
+                                <th>Start Date</th>
+                                <th>Description</th>
+                                <th>Add+</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="project in tempProjectList">
+                                    <td>{{project.name}}</td>
+                                    <td>{{project.startdate}}</td>
+                                    <td>{{project.description}}</td>
+                                    <td><button type="button" class="btn btn-success" data-toggle="modal" ng-click="AssignProjectToUser(project)">Add</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

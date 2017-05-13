@@ -170,6 +170,7 @@ app.controller('EditProjectController', ['$rootScope','$scope', '$http', functio
 	//insert project details
 
 }]);
+
 app.controller('ProfileController', ['$scope', '$http','$window', function ( $scope, $http, $window) {
 	console.log("ProfileController");
 	var getProfile = function () {
@@ -208,6 +209,7 @@ app.controller('ProfileController', ['$scope', '$http','$window', function ( $sc
 
 	};
 }]);
+
 //viewUser and profile
 app.controller('ViewUsers', ['$scope', '$http', '$window', '$location','$rootScope', function ($scope, $http, $window, $location,$rootScope) {
 	console.log("ViewUsers");
@@ -231,5 +233,47 @@ app.controller('ViewUsers', ['$scope', '$http', '$window', '$location','$rootSco
 			$scope.profileData = response.data[0];
 		});
 	};
+
+	$scope.viewAllProjectsList = function (id) {
+		var data = {"id" :id};
+		$http.get('/viewprojectlist').then(function (response) {
+			console.log("tempProjectList : "+response);
+			$scope.tempProjectList = response.data;
+		});
+
+        $scope.viewProfile(id)
+	};
+
+    $scope.AssignProjectToUser = function (project) {
+
+        console.log("Gaurang :"+ project);
+        console.log("Gaurang :"+ $scope.profileData)
+        var data = {"project" :project , "profileData": $scope.profileData };
+
+
+        $http({
+            method : "POST",
+            url : '/assignProject',
+            data : {
+                "project" :project ,
+				"profileData": $scope.profileData
+            }
+        }).success(function(data) {
+            console.log("Response : "+response);
+            $scope.status = response.data;
+
+        }).error(function(error) {
+            console.log("inside error");
+            console.log(error);
+            $scope.unexpected_error = false;
+            $scope.invalid_login = true;
+            $window.alert("unexpected_error");
+        });
+
+    };
+
+
+
+
 
 }]);
