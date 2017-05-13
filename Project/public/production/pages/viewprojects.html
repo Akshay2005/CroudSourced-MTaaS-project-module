@@ -38,9 +38,78 @@
                                     <td>{{project.startdate}}</td>
                                     <td>{{project.enddate}}</td>
                                     <td style="display:none">{{project.description}}</td>
+                                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" ng-click="editProject(project._id)">Edit</button></td>
+                                    <td><button id="{{project._id}}" type="button" class="btn btn-danger" ng-click="deleteProject(project._id)">Delete</button></td>
+                                    <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewModal" ng-click="viewProject(project._id)">View</button></td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Project Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Project Name: </strong>{{projectData.name}}</p>
+                        <p><strong>Project Started: </strong>{{projectData.startdate}}</p>
+                        <p><strong>Project Ending Date: </strong>{{projectData.enddate}}</p>
+                        <p><strong>Project Description: </strong>{{projectData.description}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="editModalLabel">Edit Project</h4>
+                    </div>
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Project Name <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="first-name" required="required" ng-model="projectData.name" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Project Start Date <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="startdate" class="date-picker form-control col-md-7 col-xs-12" required="required" ng-model="projectData.startdate" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Project End Date <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="enddate" class="date-picker form-control col-md-7 col-xs-12" required="required" ng-model="projectData.enddate" type="text">
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Project Description</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea class="form-control" placeholder="" ng-model="projectData.description"></textarea>
+                            </div>
+                            <input type="text"  required="required" ng-model="projectData._id" class="form-control col-md-7 col-xs-12" style="display: none;">
+                        </div>
+
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="update();">Update</button>
                     </div>
                 </div>
             </div>

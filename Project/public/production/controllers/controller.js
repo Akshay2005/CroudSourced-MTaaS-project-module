@@ -8,14 +8,19 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 			templateUrl: 'pages/dashboard.html',
 			controller: 'DashboardController'
 		}).state('addproject', {
-			url: "/addproject",
-			templateUrl: 'pages/addproject.html',
-			controller: 'AddProjectController'
-		}).state('viewprojects', {
-			url: "/viewprojects",
-			templateUrl: 'pages/viewprojects.html',
-			controller: 'ViewProjectsController'
-		})
+		url: "/addproject",
+		templateUrl: 'pages/addproject.html',
+		controller: 'AddProjectController'
+	}).state('viewprojects', {
+		url: "/viewprojects",
+		templateUrl: 'pages/viewprojects.html',
+		controller: 'ViewProjectsController'
+	}).state('editproject', {
+		url: "/editproject",
+		templateUrl: 'pages/editproject.html',
+		controller: 'EditProjectController'
+	})
+
 });
 
 app.factory('Scopes', function ($rootScope) {
@@ -79,7 +84,7 @@ app.controller('AddProjectController', ['$scope', '$http', '$window', function (
 }]);
 
 //View Projects
-app.controller('ViewProjectsController', ['$scope', '$http', '$window', function ($scope, $http, $window) {
+app.controller('ViewProjectsController', ['$scope', '$http', '$window', '$location','$rootScope', function ($scope, $http, $window, $location,$rootScope) {
 	console.log("ViewProjectsController");
 
 	//insert project details
@@ -91,5 +96,59 @@ app.controller('ViewProjectsController', ['$scope', '$http', '$window', function
 		});
 	};
 
+	$scope.deleteProject = function (id) {
+		console.log($scope.project);
+		var data = {"id" :id};
+		$http.post('/deleteproject',data, $scope.project).then(function (response) {
+			console.log(response);
+			viewprojectlist();
+		});
+	};
+
+	$scope.editProject = function (id) {
+		$rootScope.projectId = id;
+		$scope.projectId = id;
+	// $location.path("editproject");
+		$http.get('/viewproject?id='+id).then(function (response) {
+			console.log(response);
+			$scope.projectData = response.data[0];
+			//viewprojectlist();
+		});
+	 };
+
+	$scope.viewProject = function (id) {
+		console.log($scope.project);
+		var data = {"id" :id};
+		$http.get('/viewproject?id='+id).then(function (response) {
+			console.log(response);
+			$scope.projectData = response.data[0];
+			//viewprojectlist();
+		});
+	};
+
 	viewprojectlist();
+
+	$scope.update = function () {
+
+		var name = $scope.projectData.name;
+		var id = $scope.projectData._id;
+		var startdate = $scope.projectData.startdate;
+		var enddate = $scope.projectData.enddate;
+		var description = $scope.projectData.description;
+		var data = {"id" :id, "name":name,"startdate":startdate,"enddate":enddate,"description":description};
+		$http.post('/updateproject',data, $scope.project).then(function (response) {
+			console.log(response);
+			viewprojectlist();
+		});
+		// $location.path("editproject");
+
+	};
+}]);
+
+app.controller('EditProjectController', ['$rootScope','$scope', '$http', function ($rootScope, $scope, $http) {
+	console.log("EditProjectController");
+	console.log($rootScope.projectId);
+	console.log($scope.projectId);
+	//insert project details
+
 }]);

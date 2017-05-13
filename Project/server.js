@@ -4,6 +4,7 @@ var mongojs = require('mongojs');
 var bodyParser = require('body-parser');
 var db = mongojs('user1:user1@ds129281.mlab.com:29281/cmpe281', ['userlist']);
 var session = require('express-session');
+var ObjectID = require("mongodb").ObjectID;
 
 var sess;
 var sess_p;
@@ -100,6 +101,43 @@ app.get('/viewprojectlist', function (req, res) {
   }));
 });
 
+app.post('/deleteproject', function (req, res) {
+  var projectListCollection = db.collection('projectlist');
+  console.log(req.body);
+  var id = req.param("id");
+  var objId = new ObjectID(id);
+  projectListCollection.remove({"_id":objId}, function (err, doc) {
+    res.json(doc);
+  });
+});
+
+//view single project
+app.get('/viewproject', function (req, res) {
+  var projectListCollection = db.collection('projectlist');
+  var id = req.param("id");
+  var objId = new ObjectID(id);
+  projectListCollection.find({"_id":objId}, (function (err, docs) {
+    console.log(docs);
+    res.send(docs);
+  }));
+});
+
+app.post('/updateproject', function (req, res) {
+  var projectListCollection = db.collection('projectlist');
+  console.log(req.body);
+  var id = req.param("id");
+  var objId = new ObjectID(id);
+
+
+
+  projectListCollection.update({"_id":objId},{$set:{
+    "name": req.param("name"),
+    "startdate": req.param("startdate"),
+    "enddate": req.param("enddate"),
+    "description": req.param("description")}}, function (err, doc) {
+    res.json(doc);
+  });
+});
 app.listen(process.env.PORT || 3000, function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
