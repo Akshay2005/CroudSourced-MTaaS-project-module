@@ -74,6 +74,7 @@ app.post('/authuser', function (req, res) {
     if (result != null && result.password == req.body.password) {
       sess = req.session;
       sess.username = req.body.username;
+      sess.user_id = result._id;
       console.log("successful");
       res.send("successful");
     } else {
@@ -128,8 +129,6 @@ app.post('/updateproject', function (req, res) {
   var id = req.param("id");
   var objId = new ObjectID(id);
 
-
-
   projectListCollection.update({"_id":objId},{$set:{
     "name": req.param("name"),
     "startdate": req.param("startdate"),
@@ -138,6 +137,49 @@ app.post('/updateproject', function (req, res) {
     res.json(doc);
   });
 });
+
+app.post('/updateprofile', function (req, res) {
+  var userlist = db.collection('userlist');
+  var id = sess.user_id;
+  var objId = new ObjectID(id);
+
+  userlist.update({"_id":objId},{$set:{
+    "name":req.param("name"),"role":req.param("role"),"last_name":req.param("last_name"),"skills":req.param("skills"),"organization":req.param("organization"),"projects":req.param("projects"),
+    "exp":req.param("exp"),"sex":req.param("sex"),"linkedin":req.param("linkedin"),"portfolio":req.param("portfolio"),"country":req.param("country"),"hours":req.param("hours"),"available":req.param("available")
+    }}, function (err, doc) {
+    res.json(doc);
+  });
+});
+
+app.get('/getProfile', function (req, res) {
+  var userlist = db.collection('userlist');
+  var id = sess.user_id;
+  var objId = new ObjectID(id);
+  userlist.find({"_id":objId}, (function (err, docs) {
+    console.log(docs);
+    res.send(docs);
+  }));
+});
+
+app.get('/viewusers', function (req, res) {
+  var projectListCollection = db.collection('userlist');
+  var role = req.param("role");
+  projectListCollection.find({"role": role}, (function (err, docs) {
+    console.log(docs);
+    res.send(docs);
+  }));
+});
+
+app.get('/viewprofile', function (req, res) {
+  var projectListCollection = db.collection('userlist');
+  var id = req.param("id");
+  var objId = new ObjectID(id);
+  projectListCollection.find({"_id":objId}, (function (err, docs) {
+    console.log(docs);
+    res.send(docs);
+  }));
+});
+
 app.listen(process.env.PORT || 3000, function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });

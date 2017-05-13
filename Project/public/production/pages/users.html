@@ -1,0 +1,73 @@
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>{{user_role}}</h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>{{user_role}} List</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <table class="table" datatable="ng">
+                            <thead>
+                            <tr>
+                                <th>{{user_role}} Name</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="user in users">
+                                <td>{{user.name}}</td>
+                                <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewModal" ng-click="viewProfile(user._id)">View Profile</button></td>
+                                <td><button id="{{user._id}}" type="button" class="btn btn-warning">Add To Project + </button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Complete Profile</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>First Name: </strong>{{profileData.name}}</p>
+                        <p><strong>Last Name: </strong>{{profileData.last_name}}</p>
+                        <p><strong>Skills: </strong>{{profileData.skills}}</p>
+                        <p><strong>Work Experience: </strong>{{profileData.exp}}</p>
+                        <p><strong>Sex: </strong>{{profileData.sex}}</p>
+                        <p><strong>Linkedin Profile: </strong>{{profileData.linkedin}}</p>
+                        <p><strong>Portfolio: </strong>{{profileData.portfolio}}</p>
+                        <p><strong>Organisation: </strong>{{profileData.organization}}</p>
+                        <p><strong>Country: </strong>{{profileData.country}}</p>
+                        <p><strong>Current Projects: </strong>{{profileData.projects}}</p>
+                        <p><strong>Available: </strong>{{profileData.available}}</p>
+                        <p><strong>Hours Available: </strong>{{profileData.hours}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

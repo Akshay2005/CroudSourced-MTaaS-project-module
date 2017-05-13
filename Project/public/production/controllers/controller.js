@@ -2,6 +2,7 @@ var app = angular.module('app', ['ui.router', 'datatables', 'datatables.bootstra
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise("/dashboard");
+
 	$stateProvider
 		.state('dashboard', {
 			url: "/dashboard",
@@ -15,12 +16,23 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: "/viewprojects",
 		templateUrl: 'pages/viewprojects.html',
 		controller: 'ViewProjectsController'
-	}).state('editproject', {
-		url: "/editproject",
-		templateUrl: 'pages/editproject.html',
-		controller: 'EditProjectController'
+	}).state('profile', {
+		url: "/profile",
+		templateUrl: 'pages/profile.html',
+		controller: 'ProfileController'
+	}).state('projectmanager', {
+		url: "/manager",
+		templateUrl: 'pages/users.html',
+		controller: 'ViewUsers'
+	}).state('testers', {
+		url: "/tester",
+		templateUrl: 'pages/users.html',
+		controller: 'ViewUsers'
+	}).state('customers', {
+		url: "/customer",
+		templateUrl: 'pages/users.html',
+		controller: 'ViewUsers'
 	})
-
 });
 
 app.factory('Scopes', function ($rootScope) {
@@ -150,5 +162,68 @@ app.controller('EditProjectController', ['$rootScope','$scope', '$http', functio
 	console.log($rootScope.projectId);
 	console.log($scope.projectId);
 	//insert project details
+
+}]);
+app.controller('ProfileController', ['$scope', '$http','$window', function ( $scope, $http, $window) {
+	console.log("ProfileController");
+	var getProfile = function () {
+
+		$http.get('/getProfile').then(function (response) {
+			console.log(response);
+			$scope.user = response.data[0];
+		});
+	};
+	getProfile();
+
+	$scope.update = function () {
+
+		var name = $scope.user.name;
+		var role = $scope.user.role;
+		var last_name = $scope.user.last_name;
+		var skills = $scope.user.skills;
+		var organization = $scope.user.organization;
+		var projects = $scope.user.projects;
+		var exp = $scope.user.exp;
+		var sex = $scope.user.sex;
+		var country = $scope.user.country;
+		var linkedin = $scope.user.linkedin;
+		var portfolio = $scope.user.portfolio;
+		var hours = $scope.user.hours;
+		var available = $scope.user.available;
+		var data = {"name":name,"role":role,"last_name":last_name,"skills":skills,"organization":organization,"projects":projects,
+		"exp":exp,"sex":sex,"linkedin":linkedin,"portfolio":portfolio,"country":country,"hours":hours,"available":available};
+		$http.post('/updateprofile',data, $scope.project).then(function (response) {
+			console.log(response);
+			$window.alert("Profile Updated.");
+			viewprojectlist();
+
+		});
+		// $location.path("editproject");
+
+	};
+}]);
+//viewUser and profile
+app.controller('ViewUsers', ['$scope', '$http', '$window', '$location','$rootScope', function ($scope, $http, $window, $location,$rootScope) {
+	console.log("ViewUsers");
+
+	viewusers = function () {
+		//console.log("Location --> " + $location.path);
+		$scope.user_role = $location.$$path.substring(1);
+		$http.get('/viewusers?role='+ $location.$$path.substring(1)).then(function (response) {
+			console.log(response);
+			$scope.users = response.data;
+		});
+	};
+
+	viewusers();
+
+	$scope.viewProfile = function (id) {
+		console.log($scope.project);
+		var data = {"id" :id};
+		$http.get('/viewprofile?id='+id).then(function (response) {
+			console.log(response);
+			$scope.profileData = response.data[0];
+		});
+	};
 
 }]);
