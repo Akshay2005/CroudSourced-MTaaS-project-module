@@ -78,6 +78,10 @@
                         <p><strong>Project Started: </strong>{{projectData.startdate}}</p>
                         <p><strong>Project Ending Date: </strong>{{projectData.enddate}}</p>
                         <p><strong>Project Description: </strong>{{projectData.description}}</p>
+                        <p  ng-repeat = "users in projectData.assignedUserList">
+                                <b>Assigned user role: </b>{{users.role}} ==> <b>Username : </b>  {{users.username}}
+                        </p>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -123,6 +127,8 @@
                             </div>
                             <input type="text"  required="required" ng-model="projectData._id" class="form-control col-md-7 col-xs-12" style="display: none;">
                         </div>
+
+
 
                     </form>
                     <div class="modal-footer">
