@@ -48,6 +48,7 @@
                                     <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" ng-click="editProject(project._id)">Edit</button></td>
                                     <td><button id="{{project._id}}" type="button" class="btn btn-danger" ng-click="deleteProject(project._id)">Delete</button></td>
                                     <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewModal" ng-click="viewProject(project._id)">View</button></td>
+                                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewTestCasesModal" ng-click="viewProject(project._id)">Test Cases</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -135,6 +136,39 @@
 
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="update();">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="viewTestCasesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">TestCases Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table" datatable="ng">
+                            <thead>
+                            <tr>
+                                <th>Test Case </th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Type</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="project in projectData.testData">
+                                <td>{{project.testcase}}</td>
+                                <td>{{project.description}}</td>
+                                <td>{{project.status}}</td>
+                                <td>{{project.type}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
