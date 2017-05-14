@@ -39,7 +39,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr dir-paginate="project in projectlist|filter:search |itemsPerPage:5 track by $index">
+                                <tr dir-paginate="project in projectlist| filter:{name: search } |itemsPerPage:5 track by $index">
 
                                     <td>{{project.name}}</td>
                                     <td>{{project.startdate}}</td>
