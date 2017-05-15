@@ -125,6 +125,17 @@ app.get('/viewproject', function (req, res) {
   }));
 });
 
+//get all project for the user
+app.post('/viewprojectlistForUser', function (req, res) {
+    var userList = db.collection('userlist');
+    var id =  sess.user_id//req.param("id");
+    var objId = new ObjectID(id);
+    userList.find({"_id":objId}, (function (err, docs) {
+        console.log(docs[0].assignedProjectList);
+        res.send({"docs":docs[0].assignedProjectList});
+    }));
+});
+
 app.post('/updateproject', function (req, res) {
   var projectListCollection = db.collection('projectlist');
   console.log(req.body);

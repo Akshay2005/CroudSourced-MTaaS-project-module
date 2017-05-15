@@ -16,6 +16,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: "/viewprojects",
 		templateUrl: 'pages/viewprojects.html',
 		controller: 'ViewProjectsController'
+    }).state('myProject', {
+        url: "/myProject",
+        templateUrl: 'pages/myProject.html',
+        controller: 'myProjectController'
 	}).state('profile', {
 		url: "/profile",
 		templateUrl: 'pages/profile.html',
@@ -178,6 +182,72 @@ app.controller('ViewProjectsController', ['$scope', '$http', '$window', '$locati
 	};
 }]);
 
+app.controller('myProjectController', ['$scope', '$http', '$window', '$location','sessionService', function ($scope, $http, $window, $location,sessionService) {
+    console.log("ViewProjectsController");
+
+    //insert project details
+    viewprojectlist = function () {
+
+
+        var data = {}//{ "id" : "59166393c8e1566f07f062e4"}
+        $http.post('/viewprojectlistForUser',data, $scope.project).then(function (response) {
+            console.log(response);
+            $scope.projectlist = response.data.docs;
+        });
+
+    };
+    //session refresh
+    sessionService.refreshPage();
+
+    $scope.deleteProject = function (id) {
+        console.log($scope.project);
+        var data = {"id" :id};
+        $http.post('/deleteproject',data, $scope.project).then(function (response) {
+            console.log(response);
+            viewprojectlist();
+        });
+    };
+
+    $scope.editProject = function (id) {
+        $scope.projectId = id;
+        // $location.path("editproject");
+        $http.get('/viewproject?id='+id).then(function (response) {
+            console.log(response);
+            $scope.projectData = response.data[0];
+            //viewprojectlist();
+        });
+    };
+
+    $scope.viewProject = function (id) {
+        console.log($scope.project);
+        var data = {"id" :id};
+        $http.get('/viewproject?id='+id).then(function (response) {
+            console.log(response);
+            $scope.projectData = response.data[0];
+            //viewprojectlist();
+        });
+    };
+
+    viewprojectlist();
+
+    $scope.update = function () {
+
+        var name = $scope.projectData.name;
+        var id = $scope.projectData._id;
+        var startdate = $scope.projectData.startdate;
+        var enddate = $scope.projectData.enddate;
+        var description = $scope.projectData.description;
+        var data = {"id" :id, "name":name,"startdate":startdate,"enddate":enddate,"description":description};
+        $http.post('/updateproject',data, $scope.project).then(function (response) {
+            console.log(response);
+            viewprojectlist();
+        });
+        // $location.path("editproject");
+
+    };
+}]);
+
+
 app.controller('EditProjectController', ['$rootScope','$scope', '$http', function ($rootScope, $scope, $http) {
 	console.log("EditProjectController");
 	console.log($rootScope.projectId);
@@ -262,7 +332,7 @@ app.controller('ViewUsers', ['$scope', '$http', '$window', '$location','sessionS
 		var data = {"id" :id};
 		$http.get('/viewprojectlist').then(function (response) {
 			console.log("tempProjectList : "+response);
-			$scope.tempProjectList = response.data;
+			$scope.tempProjectList = response.data.docs;
 		});
 
         $scope.viewProfile(id)
