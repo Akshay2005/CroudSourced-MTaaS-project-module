@@ -1,7 +1,37 @@
 var loginapp = angular.module('loginapp', []);
 
 
-loginapp.controller('LoginController', ['$scope', '$http', '$window', function ($scope, $http, $window) {
+loginapp.controller('LoginController', ['$scope', '$http', '$window','$rootScope', function ($scope, $http, $window,$rootScope) {
+
+	$rootScope.istester = true;
+	$rootScope.ismanager = false;
+	refreshPage = function () {
+		//session checking
+		$http.get('/sessioncheck').then(function (response) {
+			console.log("I got the data I requested");
+			console.log(response);
+
+			if (response.data == 'not exist') {
+				$rootScope.username = "";
+				$rootScope.istester = true;
+				$rootScope.ismanager = false;
+				$window.location.href = "login.html";
+			} else {
+				$rootScope.username = response.data.username;
+				if(response.data.role =="tester") {
+					$rootScope.istester = false;
+					$rootScope.ismanager = true;
+				}
+				else{
+					$rootScope.istester = true;
+					$rootScope.ismanager = false;
+				}
+			}
+		});
+	};
+
+	refreshPage();
+
 	console.log("Hello from LoginController");
 	//destroy session
 	$http.get('/sessiondestroy').then(function (response) {

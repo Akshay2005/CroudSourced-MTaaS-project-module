@@ -45,8 +45,8 @@
                                     <td>{{project.startdate}}</td>
                                     <td>{{project.enddate}}</td>
                                     <td style="display:none">{{project.description}}</td>
-                                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" ng-click="editProject(project._id)">Edit</button></td>
-                                    <td><button id="{{project._id}}" type="button" class="btn btn-danger" ng-click="deleteProject(project._id)">Delete</button></td>
+                                    <td> <div ng-hide="istester" ><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" ng-click="editProject(project._id)">Edit</button></div></td>
+                                    <td><div ng-hide="istester" ><button id="{{project._id}}" type="button" class="btn btn-danger" ng-click="deleteProject(project._id)">Delete</button></div></td>
                                     <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewModal" ng-click="viewProject(project._id)">View</button></td>
                                     <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewTestCasesModal" ng-click="viewProject(project._id)">Test Cases</button></td>
                                 </tr>
