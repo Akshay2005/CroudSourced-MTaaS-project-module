@@ -30,7 +30,7 @@ loginapp.controller('LoginController', ['$scope', '$http', '$window','$rootScope
 		});
 	};
 
-	refreshPage();
+	//refreshPage();
 
 	console.log("Hello from LoginController");
 	//destroy session

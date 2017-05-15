@@ -63,38 +63,39 @@ app.run(['$rootScope', function ($rootScope) {
 	};
 }]);
 
+//service
+app.factory('sessionService', function($rootScope,$http) {
+	return {
+		refreshPage: function() {
+			$http.get('/sessioncheck').then(function (response) {
+				console.log("I got the data I requested");
+				console.log(response);
 
-//Dashboard
-app.controller('DashboardController', ['$scope', '$http', '$rootScope', '$window', function ($scope, $http, $rootScope, $window) {
-	console.log("DashboardController");
-	$rootScope.istester = true;
-	$rootScope.ismanager = false;
-	refreshPage = function () {
-		//session checking
-		$http.get('/sessioncheck').then(function (response) {
-			console.log("I got the data I requested");
-			console.log(response);
-
-			if (response.data == 'not exist') {
-				$rootScope.username = "";
-				$rootScope.istester = true;
-				$rootScope.ismanager = false;
-				$window.location.href = "login.html";
-			} else {
-				$rootScope.username = response.data.username;
-				if(response.data.role =="tester") {
+				if (response.data == 'not exist') {
+					$rootScope.username = "";
 					$rootScope.istester = false;
 					$rootScope.ismanager = true;
+					$window.location.href = "login.html";
+				} else {
+					$rootScope.username = response.data.username;
+					if(response.data.role =="tester") {
+						$rootScope.istester = true;
+						$rootScope.ismanager = false;
+					}
+					else{
+						$rootScope.istester = false;
+						$rootScope.ismanager = true;
+					}
 				}
-				else{
-					$rootScope.istester = true;
-					$rootScope.ismanager = false;
-				}
-			}
-		});
+			});
+		}
 	};
+});
 
-	refreshPage();
+//Dashboard
+app.controller('DashboardController', ['$scope', '$http', 'sessionService', '$window', function ($scope, $http, sessionService, $window) {
+	console.log("DashboardController");
+	sessionService.refreshPage();
 }]);
 
 //Add Projects
@@ -113,7 +114,7 @@ app.controller('AddProjectController', ['$scope', '$http', '$window', function (
 }]);
 
 //View Projects
-app.controller('ViewProjectsController', ['$scope', '$http', '$window', '$location','$rootScope', function ($scope, $http, $window, $location,$rootScope) {
+app.controller('ViewProjectsController', ['$scope', '$http', '$window', '$location','sessionService', function ($scope, $http, $window, $location,sessionService) {
 	console.log("ViewProjectsController");
 
 	//insert project details
@@ -121,9 +122,13 @@ app.controller('ViewProjectsController', ['$scope', '$http', '$window', '$locati
 
 		$http.get('/viewprojectlist').then(function (response) {
 			console.log(response);
-			$scope.projectlist = response.data;
+			$scope.projectlist = response.data.docs;
+
 		});
+
 	};
+	//session refresh
+	sessionService.refreshPage();
 
 	$scope.deleteProject = function (id) {
 		console.log($scope.project);
@@ -135,7 +140,6 @@ app.controller('ViewProjectsController', ['$scope', '$http', '$window', '$locati
 	};
 
 	$scope.editProject = function (id) {
-		$rootScope.projectId = id;
 		$scope.projectId = id;
 	// $location.path("editproject");
 		$http.get('/viewproject?id='+id).then(function (response) {
@@ -182,8 +186,12 @@ app.controller('EditProjectController', ['$rootScope','$scope', '$http', functio
 
 }]);
 
-app.controller('ProfileController', ['$scope', '$http','$window', function ( $scope, $http, $window) {
+app.controller('ProfileController', ['$scope', '$http','$window','sessionService', function ( $scope, $http, $window,sessionService) {
 	console.log("ProfileController");
+
+	//session refresh
+	sessionService.refreshPage();
+
 	var getProfile = function () {
 
 		$http.get('/getProfile').then(function (response) {
@@ -222,16 +230,21 @@ app.controller('ProfileController', ['$scope', '$http','$window', function ( $sc
 }]);
 
 //viewUser and profile
-app.controller('ViewUsers', ['$scope', '$http', '$window', '$location','$rootScope', function ($scope, $http, $window, $location,$rootScope) {
+app.controller('ViewUsers', ['$scope', '$http', '$window', '$location','sessionService', function ($scope, $http, $window, $location,sessionService) {
 	console.log("ViewUsers");
+
+	//session refresh
+	sessionService.refreshPage();
 
 	viewusers = function () {
 		//console.log("Location --> " + $location.path);
 		$scope.user_role = $location.$$path.substring(1);
 		$http.get('/viewusers?role='+ $location.$$path.substring(1)).then(function (response) {
 			console.log(response);
-			$scope.users = response.data;
+			$scope.users = response.data.docs;
+
 		});
+
 	};
 
 	viewusers();

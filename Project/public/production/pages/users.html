@@ -34,7 +34,7 @@
                             <tr ng-repeat="user in users">
                                 <td>{{user.name}}</td>
                                 <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewModal" ng-click="viewProfile(user._id)">View Profile</button></td>
-                                <td><button id="{{user._id}}" type="button" class="btn btn-warning" data-toggle="modal" data-target="#viewModalForProject" ng-click="viewAllProjectsList(user._id)">Add To Project + </button></td>
+                                <td><div ng-hide="istester" ><button id="{{user._id}}" type="button" class="btn btn-warning" data-toggle="modal" data-target="#viewModalForProject" ng-click="viewAllProjectsList(user._id)">Add To Project + </button></div></td>
                             </tr>
                             </tbody>
                         </table>

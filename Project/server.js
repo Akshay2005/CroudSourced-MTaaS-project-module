@@ -100,7 +100,7 @@ app.get('/viewprojectlist', function (req, res) {
   var projectListCollection = db.collection('projectlist');
   projectListCollection.find({}, (function (err, docs) {
     console.log(docs);
-    res.send(docs);
+    res.send({"docs":docs,role:sess.role});
   }));
 });
 
@@ -168,7 +168,7 @@ app.get('/viewusers', function (req, res) {
   var role = req.param("role");
   projectListCollection.find({"role": role}, (function (err, docs) {
     console.log(docs);
-    res.send(docs);
+    res.send({"docs":docs, role:sess.role});
   }));
 });
 
