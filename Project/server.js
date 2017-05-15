@@ -131,8 +131,10 @@ app.post('/viewprojectlistForUser', function (req, res) {
     var id =  sess.user_id//req.param("id");
     var objId = new ObjectID(id);
     userList.find({"_id":objId}, (function (err, docs) {
-        console.log(docs[0].assignedProjectList);
-        res.send({"docs":docs[0].assignedProjectList});
+        if(docs[0].assignedProjectList != undefined) {
+            console.log(docs[0].assignedProjectList);
+            res.send({"docs": docs[0].assignedProjectList});
+        }
     }));
 });
 
