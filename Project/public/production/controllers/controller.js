@@ -67,7 +67,8 @@ app.run(['$rootScope', function ($rootScope) {
 //Dashboard
 app.controller('DashboardController', ['$scope', '$http', '$rootScope', '$window', function ($scope, $http, $rootScope, $window) {
 	console.log("DashboardController");
-
+	$rootScope.istester = true;
+	$rootScope.ismanager = false;
 	refreshPage = function () {
 		//session checking
 		$http.get('/sessioncheck').then(function (response) {
@@ -76,9 +77,19 @@ app.controller('DashboardController', ['$scope', '$http', '$rootScope', '$window
 
 			if (response.data == 'not exist') {
 				$rootScope.username = "";
+				$rootScope.istester = true;
+				$rootScope.ismanager = false;
 				$window.location.href = "login.html";
 			} else {
-				$rootScope.username = response.data;
+				$rootScope.username = response.data.username;
+				if(response.data.role =="tester") {
+					$rootScope.istester = false;
+					$rootScope.ismanager = true;
+				}
+				else{
+					$rootScope.istester = true;
+					$rootScope.ismanager = false;
+				}
 			}
 		});
 	};

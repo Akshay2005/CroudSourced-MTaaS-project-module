@@ -28,7 +28,7 @@ app.get('/sessioncheck', function (req, res) {
   sess = req.session;
 
   if (sess.username) {
-    res.send(sess.username);
+    res.send({"username":sess.username, "role":sess.role});
   } else {
     res.send("not exist");
   }
@@ -75,11 +75,13 @@ app.post('/authuser', function (req, res) {
       sess = req.session;
       sess.username = req.body.username;
       sess.user_id = result._id;
+      sess.role = result.role;
       console.log("successful");
-      res.send("successful");
+      res.send({success:"successful","role":sess.role});
+
     } else {
       console.log("unsuccessful");
-      res.send("unsuccessful");
+      res.send({success:"unsuccessful"});
     }
   });
 });
