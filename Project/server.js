@@ -285,6 +285,13 @@ app.post('/broadcastMessage',function (req,res){
     // Enjoy Pranjal
 } );
 
+app.get('/getCustomerCount', function (req, res) {
+    var userlist = db.collection('userlist');
+    userlist.find({"role":"tester"}, (function (err, docs) {
+        console.log(docs);
+        res.send(docs);
+    }));
+});
 
 app.listen(process.env.PORT || 3000, function () {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);

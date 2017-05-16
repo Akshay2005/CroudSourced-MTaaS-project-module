@@ -285,6 +285,31 @@ app.controller('DashboardController', ['$scope', '$http', 'sessionService', '$wi
 		],
 		resize: true
 	});
+
+	$http.get('/viewprojectlist').then(function (response) {
+			//console.log(response);
+			$scope.projects = response.data.docs.length;
+
+	});
+
+	$http.get('/viewusers?role=' + 'tester').then(function (response) {
+			console.log(response);
+			$scope.testers = response.data.docs.length;
+
+	});
+
+	$http.get('/viewusers?role=' + 'customer').then(function (response) {
+			console.log(response);
+			$scope.customers = response.data.docs.length;
+
+	});
+
+	$http.get('/viewusers?role=' + 'manager').then(function (response) {
+			console.log(response);
+			$scope.managers = response.data.docs.length;
+
+	});
+
 }]);
 
 //Add Projects
