@@ -282,7 +282,6 @@ app.post('/broadcastMessage',function (req,res){
             console.log('Message %s sent: %s', info.messageId, info.response);
         });
     }
-    // Enjoy Pranjal
 } );
 
 
