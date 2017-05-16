@@ -104,6 +104,7 @@ app.controller('DashboardController', ['$scope', '$http', 'sessionService', '$wi
 //Add Projects
 app.controller('AddProjectController', ['$scope', '$http', '$window', function ($scope, $http, $window) {
 	console.log("AddProjectController");
+	sessionService.refreshPage();
 
 	//insert project details
 	$scope.addProject = function () {
@@ -289,6 +290,9 @@ app.controller('myProjectController', ['$scope', '$http', '$window', '$location'
 
 
 app.controller('EditProjectController', ['$rootScope', '$scope', '$http', function ($rootScope, $scope, $http) {
+	//session refresh
+	sessionService.refreshPage();
+
 	console.log("EditProjectController");
 	console.log($rootScope.projectId);
 	console.log($scope.projectId);
@@ -425,9 +429,4 @@ app.controller('ViewUsers', ['$scope', '$http', '$window', '$location', 'session
 		});
 
 	};
-
-
-
-
-
 }]);
