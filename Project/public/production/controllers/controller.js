@@ -245,6 +245,20 @@ app.controller('myProjectController', ['$scope', '$http', '$window', '$location'
         // $location.path("editproject");
 
     };
+
+
+    $scope.broadcast = function(project){
+    	$scope.selectedProject = project;
+	};
+
+    $scope.BroadcastMessage = function(){
+        var data = {"project" :$scope.selectedProject , "tag":$scope.tag,"message":$scope.message};
+        $http.post('/broadcastMessage',data, $scope.project).then(function (response) {
+            console.log(response);
+            viewprojectlist();
+        });
+
+	}
 }]);
 
 
