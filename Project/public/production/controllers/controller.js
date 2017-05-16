@@ -112,7 +112,10 @@ app.controller('AddProjectController', ['$scope', '$http', '$window', function (
 
 		$http.post('/addproject', $scope.project).then(function (response) {
 			console.log(response);
-			$window.alert("Project Added.");
+            $scope.project.description="";
+            $scope.project.name="";
+            $scope.project.enddate="";
+            $scope.project.startdate="";
 		});
 	};
 }]);
