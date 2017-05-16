@@ -107,6 +107,27 @@ app.factory('sessionService', function ($rootScope, $http, $window) {
 app.controller('DashboardController', ['$scope', '$http', 'sessionService', '$window', function ($scope, $http, sessionService, $window) {
 	console.log("DashboardController");
 	sessionService.refreshPage();
+	Morris.Donut({
+          element: 'graph_donut',
+          data: [{
+              label: 'Customer',
+              value: 20
+            },
+            {
+              label: 'Manager',
+              value: 60
+            },
+            {
+              label: 'Tester',
+              value: 20
+            }
+          ],
+          colors: ['#26B99A', '#34495E', '#3498DB', '#3498DB'],
+          formatter: function (y) {
+            return y + "%";
+          },
+          resize: true
+        });
 }]);
 
 //Add Projects
