@@ -45,10 +45,10 @@ app.filter('capitalize', function () {
 	}
 });
 
-app.filter('trimDate', function() {
-    return function(input) {
-        return (input.substr(0,10));
-    }
+app.filter('trimDate', function () {
+	return function (input) {
+		return (input.substr(0, 10));
+	}
 });
 
 
@@ -107,27 +107,183 @@ app.factory('sessionService', function ($rootScope, $http, $window) {
 app.controller('DashboardController', ['$scope', '$http', 'sessionService', '$window', function ($scope, $http, sessionService, $window) {
 	console.log("DashboardController");
 	sessionService.refreshPage();
+	Morris.Bar({
+		element: 'graph_bar',
+		data: [{
+				device: 'iPhone 4',
+				geekbench: 380
+			},
+			{
+				device: 'iPhone 4S',
+				geekbench: 655
+			},
+			{
+				device: 'iPhone 3GS',
+				geekbench: 275
+			},
+			{
+				device: 'iPhone 5',
+				geekbench: 1571
+			},
+			{
+				device: 'iPhone 5S',
+				geekbench: 655
+			},
+			{
+				device: 'iPhone 6',
+				geekbench: 2154
+			},
+			{
+				device: 'iPhone 6 Plus',
+				geekbench: 1144
+			},
+			{
+				device: 'iPhone 6S',
+				geekbench: 2371
+			},
+			{
+				device: 'iPhone 6S Plus',
+				geekbench: 1471
+			},
+			{
+				device: 'Other',
+				geekbench: 1371
+			}
+		],
+		xkey: 'device',
+		ykeys: ['geekbench'],
+		labels: ['Geekbench'],
+		barRatio: 0.4,
+		barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+		xLabelAngle: 35,
+		hideHover: 'auto',
+		resize: true
+	});
+
+	Morris.Area({
+		element: 'graph_area',
+		data: [{
+				period: '2014 Q1',
+				iphone: 2666,
+				ipad: null,
+				itouch: 2647
+			},
+			{
+				period: '2014 Q2',
+				iphone: 2778,
+				ipad: 2294,
+				itouch: 2441
+			},
+			{
+				period: '2014 Q3',
+				iphone: 4912,
+				ipad: 1969,
+				itouch: 2501
+			},
+			{
+				period: '2014 Q4',
+				iphone: 3767,
+				ipad: 3597,
+				itouch: 5689
+			},
+			{
+				period: '2015 Q1',
+				iphone: 6810,
+				ipad: 1914,
+				itouch: 2293
+			},
+			{
+				period: '2015 Q2',
+				iphone: 5670,
+				ipad: 4293,
+				itouch: 1881
+			},
+			{
+				period: '2015 Q3',
+				iphone: 4820,
+				ipad: 3795,
+				itouch: 1588
+			},
+			{
+				period: '2015 Q4',
+				iphone: 15073,
+				ipad: 5967,
+				itouch: 5175
+			},
+			{
+				period: '2016 Q1',
+				iphone: 10687,
+				ipad: 4460,
+				itouch: 2028
+			},
+			{
+				period: '2016 Q2',
+				iphone: 8432,
+				ipad: 5713,
+				itouch: 1791
+			}
+		],
+		xkey: 'period',
+		ykeys: ['iphone', 'ipad', 'itouch'],
+		lineColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+		labels: ['iPhone', 'iPad', 'iPod Touch'],
+		pointSize: 2,
+		hideHover: 'auto',
+		resize: true
+	});
+
 	Morris.Donut({
-          element: 'graph_donut',
-          data: [{
-              label: 'Customer',
-              value: 20
-            },
-            {
-              label: 'Manager',
-              value: 60
-            },
-            {
-              label: 'Tester',
-              value: 20
-            }
-          ],
-          colors: ['#26B99A', '#34495E', '#3498DB', '#3498DB'],
-          formatter: function (y) {
-            return y + "%";
-          },
-          resize: true
-        });
+		element: 'graph_donut',
+		data: [{
+				label: 'Customer',
+				value: 20
+			},
+			{
+				label: 'Manager',
+				value: 60
+			},
+			{
+				label: 'Tester',
+				value: 20
+			}
+		],
+		colors: ['#26B99A', '#34495E', '#3498DB', '#3498DB'],
+		formatter: function (y) {
+			return y + "%";
+		},
+		resize: true
+	});
+
+	Morris.Line({
+		element: 'graph_line',
+		xkey: 'year',
+		ykeys: ['value'],
+		labels: ['Value'],
+		hideHover: 'auto',
+		lineColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+		data: [{
+				year: '2012',
+				value: 20
+			},
+			{
+				year: '2013',
+				value: 10
+			},
+			{
+				year: '2014',
+				value: 5
+			},
+			{
+				year: '2015',
+				value: 5
+			},
+			{
+				year: '2016',
+				value: 20
+			}
+		],
+		resize: true
+	});
 }]);
 
 //Add Projects
