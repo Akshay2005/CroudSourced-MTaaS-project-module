@@ -45,6 +45,14 @@ app.filter('capitalize', function() {
     }
 });
 
+app.filter('trimDate', function() {
+    return function(input) {
+        return (input.substr(0,10));
+    }
+});
+
+
+
 app.factory('Scopes', function ($rootScope) {
 	var mem = {};
 
