@@ -47,7 +47,8 @@ app.filter('capitalize', function () {
 
 app.filter('trimDate', function () {
 	return function (input) {
-		return (input.substr(0, 10));
+		if(input != null)
+			return (input.substr(0, 10));
 	}
 });
 
@@ -381,7 +382,7 @@ app.controller('ViewProjectsController', ['$scope', '$http', '$window', '$locati
 }]);
 
 app.controller('myProjectController', ['$scope', '$http', '$window', '$location', 'sessionService', function ($scope, $http, $window, $location, sessionService) {
-	console.log("ViewProjectsController");
+	console.log("myProjectController");
 
 	//insert project details
 	viewprojectlist = function () {
@@ -389,7 +390,7 @@ app.controller('myProjectController', ['$scope', '$http', '$window', '$location'
 
 		var data = {} //{ "id" : "59166393c8e1566f07f062e4"}
 		$http.post('/viewprojectlistForUser', data, $scope.project).then(function (response) {
-			console.log(response);
+			console.log(response.data.docs.length);
 			$scope.projectlist = response.data.docs;
 		});
 
