@@ -42,9 +42,9 @@
             <div class="profile_pic">
               <img src="images/img.jpg" alt="..." class="img-circle profile_img">
             </div>
-            <div class="profile_info">
+            <div class="profile_info" style="margin-bottom: 30px;">
               <span>Welcome</span>
-              <span>{{ username | capitalize}}</span>
+              <span>{{ $scope.username | capitalize}}</span>
             </div>
           </div>
           <!-- /menu profile quick info -->
@@ -137,11 +137,11 @@
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                   <img src="images/img.jpg" alt="">{{ username | capitalize}}
-                  <span class=" fa fa-angle-down" style="margin-right: 80px;"></span>
+                  <span class=" fa fa-angle-down" style="margin-right: 40px;"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
                   <li><a ui-sref="profile"> Profile</a></li>
-                  <li ><a href="login.html" ng-click="logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  <li ><a href="login.html" ng-click="logout()" style="margin-right: 10px;"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                 </ul>
               </li>
             </ul>
