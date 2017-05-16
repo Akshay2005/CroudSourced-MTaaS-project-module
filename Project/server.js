@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var db = mongojs('user1:user1@ds129281.mlab.com:29281/cmpe281', ['userlist']);
 var session = require('express-session');
 var ObjectID = require("mongodb").ObjectID;
+var nodemailer = require('nodemailer');
 
 var sess;
 var sess_p;
@@ -248,6 +249,39 @@ app.post('/broadcastMessage',function (req,res){
     var tag = req.param("tag");
     var message = req.param("message");
 
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'noreplymtaas@gmail.com',
+            pass: 'P@ssword123'
+        }
+    });
+    var verification_id = Math.floor(1000 + Math.random() * 9000);
+    var maillist = [];
+    var assignedUserList = project.assignedUserList;
+
+    assignedUserList.forEach(function callback(currentValue, index, array) {
+        maillist.push(currentValue.email);
+    });
+
+
+
+    var mailOptions = {
+        from: 'noreplymtaas', // sender address
+        to: maillist, // list of receivers
+        subject: tag, // Subject line
+        text: '<div>This is a notification from a project you are participating at. </div><br><br><b>Project Name: </b>'+project.name, // plain text body
+        html: '<b>'+ message +'</b> <br><br><br> <p>This notification was sent by an automated service. Please do not rely to this message as the reply-to address is not a monitored mailbox.</p> '
+    };
+
+    if(maillist.length>0){
+        transporter.sendMail(mailOptions, function(error, info)  {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Message %s sent: %s', info.messageId, info.response);
+        });
+    }
     // Enjoy Pranjal
 } );
 
