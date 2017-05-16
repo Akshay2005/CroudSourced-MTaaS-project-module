@@ -110,7 +110,7 @@ app.controller('DashboardController', ['$scope', '$http', 'sessionService', '$wi
 }]);
 
 //Add Projects
-app.controller('AddProjectController', ['$scope', '$http', '$window', function ($scope, $http, $window) {
+app.controller('AddProjectController', ['$scope', '$http', '$window','sessionService', function ($scope, $http, $window,sessionService) {
 	console.log("AddProjectController");
 	sessionService.refreshPage();
 
@@ -416,25 +416,29 @@ app.controller('ViewUsers', ['$scope', '$http', '$window', '$location', 'session
 			"profileData": $scope.profileData
 		};
 
+        $http.post('/assignProject', data, $scope.project).then(function (response) {
+            console.log("Response : " + response);
+            $scope.status = response.data;
+        });
 
-		$http({
-			method: "POST",
-			url: '/assignProject',
-			data: {
-				"project": project,
-				"profileData": $scope.profileData
-			}
-		}).success(function (data) {
-			console.log("Response : " + response);
-			$scope.status = response.data;
+		/*$http({
+         method: "POST",
+         url: '/assignProject',
+         data: {
+         "project": project,
+         "profileData": $scope.profileData
+         }
+         }).success(function (data) {
+         console.log("Response : " + response);
+         $scope.status = response.data;
 
-		}).error(function (error) {
-			console.log("inside error");
-			console.log(error);
-			$scope.unexpected_error = false;
-			$scope.invalid_login = true;
-			$window.alert("unexpected_error");
-		});
+         }).error(function (error) {
+         console.log("inside error");
+         console.log(error);
+         $scope.unexpected_error = false;
+         $scope.invalid_login = true;
+         $window.alert("unexpected_error");
+         });*/
 
 	};
 }]);
