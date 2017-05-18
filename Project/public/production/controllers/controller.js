@@ -111,43 +111,43 @@ app.controller('DashboardController', ['$scope', '$http', 'sessionService', '$wi
 	Morris.Bar({
 		element: 'graph_bar',
 		data: [{
-				device: 'iPhone 4',
+				device: 'Akshay',
 				geekbench: 380
 			},
 			{
-				device: 'iPhone 4S',
+				device: 'Pranjal',
 				geekbench: 655
 			},
 			{
-				device: 'iPhone 3GS',
+				device: 'Shaurya',
 				geekbench: 275
 			},
 			{
-				device: 'iPhone 5',
+				device: 'Gaurang',
 				geekbench: 1571
 			},
 			{
-				device: 'iPhone 5S',
+				device: 'Parth',
 				geekbench: 655
 			},
 			{
-				device: 'iPhone 6',
+				device: 'Nitin',
 				geekbench: 2154
 			},
 			{
-				device: 'iPhone 6 Plus',
+				device: 'Amol',
 				geekbench: 1144
 			},
 			{
-				device: 'iPhone 6S',
+				device: 'Amey',
 				geekbench: 2371
 			},
 			{
-				device: 'iPhone 6S Plus',
+				device: 'Dan',
 				geekbench: 1471
 			},
 			{
-				device: 'Other',
+				device: 'Ravi',
 				geekbench: 1371
 			}
 		],
@@ -165,69 +165,69 @@ app.controller('DashboardController', ['$scope', '$http', 'sessionService', '$wi
 		element: 'graph_area',
 		data: [{
 				period: '2014 Q1',
-				iphone: 2666,
-				ipad: null,
-				itouch: 2647
+				Actual : 2666,
+				Estimated: null,
+        		Best: 2647
 			},
 			{
 				period: '2014 Q2',
-				iphone: 2778,
-				ipad: 2294,
-				itouch: 2441
+                Actual: 2778,
+                Estimated: 2294,
+                Best: 2441
 			},
 			{
 				period: '2014 Q3',
-				iphone: 4912,
-				ipad: 1969,
-				itouch: 2501
+                Actual: 4912,
+                Estimated: 1969,
+                Best: 2501
 			},
 			{
 				period: '2014 Q4',
-				iphone: 3767,
-				ipad: 3597,
-				itouch: 5689
+                Actual: 3767,
+                Estimated: 3597,
+                Best: 5689
 			},
 			{
 				period: '2015 Q1',
-				iphone: 6810,
-				ipad: 1914,
-				itouch: 2293
+                Actual: 6810,
+                Estimated: 1914,
+                Best: 2293
 			},
 			{
 				period: '2015 Q2',
-				iphone: 5670,
-				ipad: 4293,
-				itouch: 1881
+                Actual: 5670,
+                Estimated: 4293,
+                Best: 1881
 			},
 			{
 				period: '2015 Q3',
-				iphone: 4820,
-				ipad: 3795,
-				itouch: 1588
+                Actual: 4820,
+                Estimated: 3795,
+                Best: 1588
 			},
 			{
 				period: '2015 Q4',
-				iphone: 15073,
-				ipad: 5967,
-				itouch: 5175
+                Actual: 15073,
+                Estimated: 5967,
+                Best: 5175
 			},
 			{
 				period: '2016 Q1',
-				iphone: 10687,
-				ipad: 4460,
-				itouch: 2028
+                Actual: 10687,
+                Estimated: 4460,
+                Best: 2028
 			},
 			{
 				period: '2016 Q2',
-				iphone: 8432,
-				ipad: 5713,
-				itouch: 1791
+                Actual: 8432,
+                Estimated: 5713,
+                Best: 1791
 			}
 		],
 		xkey: 'period',
-		ykeys: ['iphone', 'ipad', 'itouch'],
+		ykeys: ['Actual', 'Estimated', 'Best'],
 		lineColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-		labels: ['iPhone', 'iPad', 'iPod Touch'],
+		labels: ['Actual', 'Estimated', 'Best'],
 		pointSize: 2,
 		hideHover: 'auto',
 		resize: true
