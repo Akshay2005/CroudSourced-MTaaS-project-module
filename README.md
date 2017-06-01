@@ -2,7 +2,7 @@
 - This project is designed to develop, implement, and validate a crowdsourced testing environment for mobile apps based on a selected cloud infrastructure i.e. MTaaS (Mobile Testing as a Service).
 
 ## Project manager module
-- It is a software component supporting mobile app testing projectmanagement. It supports the following features:
+- It is a software component supporting mobile app testing project management. It supports the following features:
 - A community-oriented testing project management in terms of project customers, and managers.
 - This component supports diverse project management services, including
     - Project customer management, such as addition, update, deletion, and viewing or search projects and related customers.
